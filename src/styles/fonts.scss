@@ -1,0 +1,64 @@
+@font-face {
+  font-family: "Gotham";
+  src:
+    url("../assets/fonts/Gotham-Bold.otf") format("opentype"),
+    url("@/assets/fonts/Gotham-BoldItalic.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src:
+    url("@/assets/fonts/Gotham-Medium.otf") format("opentype"),
+    url("@/assets/fonts/Gotham-MediumItalic.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src:
+    url("@/assets/fonts/Gotham-Book.otf") format("opentype"),
+    url("@/assets/fonts/Gotham-BookItalic.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+.el-form-item {
+  margin-bottom: 0 !important;
+}
+.el-form-item__error {
+  position: relative !important;
+}
+
+.el-form-item--label-top .el-form-item__label {
+  margin-bottom: 0 !important;
+}
+
+.el-pagination.is-background .el-pager .number {
+  background-color: transparent;
+  border-radius: 0.5rem;
+  margin: 0;
+}
+
+:root {
+  // -  -el-text-color-primary: #8C8C8C !important;
+  --el-fill-color: #fff !important
+;
+}
+
+.btn-next {
+  @apply z-10 !px-4 !py-2 !font-medium !rounded-lg !bg-gray1 border-gray-300 hover:bg-gray-100;
+}
+.btn-prev {
+  @apply z-10 !px-4 !py-2 !font-medium !rounded-lg !bg-gray1 border-gray-300 hover:bg-gray-100;
+}
+
+.el-tabs__active-bar {
+  display: none;
+}
+
+.el-tabs__nav-wrap:after {
+  display: none;
+}
