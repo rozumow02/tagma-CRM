@@ -1,7 +1,7 @@
 <template>
   <div class="mx-auto border rounded-lg">
     <Header :title="t('menuItems.pointsOfSale')">
-      <div class="flex items-center">
+      <div v-if="!DEMO_MODE" class="flex items-center">
         <SkeletonButton
           v-if="isLoading"
           :width="80"
@@ -27,6 +27,7 @@
         @update-query="updateQuery"
       />
       <span
+        v-if="!DEMO_MODE"
         @click="toggleCollapse"
         size="default"
         link
@@ -45,7 +46,7 @@
     <transition name="fade">
       <!-- </template> -->
       <HorizontalFilter
-        v-if="!isCollapsed"
+        v-if="!DEMO_MODE && !isCollapsed"
         class="pt-0"
         :filters="filtersHide"
         :query="query"
@@ -67,7 +68,7 @@
       :total="query.pageCount * query.pageSize"
       :page-count="query.pageCount"
       class="!text-gray3 !font-medium"
-      :page-sizes="[300, 3000]"
+      :page-sizes="DEMO_MODE ? [10, 20] : [300, 3000]"
       :default-page-size="query.pageNumber"
       background
       @current-change="changePage"
@@ -88,6 +89,7 @@
 </template>
 
 <script setup lang="ts">
+import { DEMO_MODE } from "@/demo/config";
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-vue-next";
 import { computed, onBeforeMount, onMounted, ref, watch } from "vue";
 import AddPoint from "@/views/Points/AddPoints.vue";
@@ -119,6 +121,10 @@ const { FETCH_POINTS, FETCH_POINTS_EXCEL, FETCH_ALL_SELECT } = usePointsStore();
 const { t } = useI18n();
 
 onBeforeMount(() => {
+  if (DEMO_MODE) {
+    query.pageNumber = 1;
+    query.pageSize = 10;
+  }
   FETCH_ALL_SELECT();
   FETCH_POINTS();
 });

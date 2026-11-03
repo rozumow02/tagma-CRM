@@ -571,6 +571,7 @@ if (DEMO_MODE) {
     { id: 1, nameKey: "total_sales", path: "total-sales", active: false },
     { id: 2, nameKey: "promotions", path: "promotions", active: false },
     { id: 3, nameKey: "routes", path: "route-orders", active: false },
+    { id: 4, nameKey: "pointsOfSale", path: "points-of-sale", active: false },
   ];
 }
 

@@ -15,6 +15,10 @@ import {
   createPromotion,
   routeOrder,
   saveRouteOrder,
+  outletCities,
+  outletDistricts,
+  emptyOutletLookup,
+  outletList,
 } from "./data";
 
 function record(value: unknown): value is Record<string, unknown> {
@@ -97,6 +101,59 @@ export const demoAdapter: AxiosAdapter = async (config) => {
   const payload = body(config.data as unknown);
   let data: unknown;
   switch (`${method} ${url}`) {
+    case "GET points/cities":
+      data = outletCities;
+      break;
+    case "GET points/districts": {
+      const city = integer(query.cityId);
+      if (!outletCities.some((row) => row.id === city))
+        fail(config, 400, "Invalid demo city");
+      data = outletDistricts
+        .filter((row) => row.cityId === city)
+        .map(({ id, name }) => ({ id, name }));
+      break;
+    }
+    case "GET points/channels":
+    case "GET channels/management":
+    case "GET channels/size":
+    case "GET channels/structure":
+    case "GET channels/type":
+    case "GET agents/ekspeditors":
+    case "GET payments/types":
+      data = emptyOutletLookup;
+      break;
+    case "GET points": {
+      const page = integer(query.pageNumber ?? 1),
+        size = integer(query.pageSize ?? 10);
+      if (
+        page === null ||
+        page < 1 ||
+        size === null ||
+        size < 1 ||
+        size > 3000 ||
+        (query.name != null && typeof query.name !== "string")
+      )
+        fail(config, 400, "Invalid demo outlet query");
+      const filterId = (
+        value: unknown,
+        options: ISelectAll[],
+      ): number | undefined => {
+        if (value == null || value === "") return undefined;
+        const id = integer(value);
+        if (id === null || !options.some((row) => row.id === id))
+          fail(config, 400, "Invalid demo outlet filter");
+        return id;
+      };
+      data = outletList({
+        name: typeof query.name === "string" ? query.name : "",
+        pageNumber: page,
+        pageSize: size,
+        agentId: filterId(query.agentId, agents),
+        cityId: filterId(query.cityId, outletCities),
+        districtId: filterId(query.districtId, outletDistricts),
+      });
+      break;
+    }
     case "GET points/agents":
       data = agents;
       break;

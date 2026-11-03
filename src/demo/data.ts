@@ -4,6 +4,8 @@ import type {
   ISelectAll,
   IPromotions,
   IPromotionsForm,
+  IPoints,
+  IFurniturePointCount,
 } from "@/types";
 
 export const agents = [
@@ -168,4 +170,115 @@ export function saveRouteOrder(
     `${agentId}:${dayId}`,
     rows.map((row) => ({ ...row })),
   );
+}
+
+export const outletCities = [
+  { id: 86001, name: "Demo City Alpha" },
+  { id: 86002, name: "Demo City Beta" },
+] satisfies ISelectAll[];
+
+export const outletDistricts = [
+  { id: 87001, cityId: 86001, name: "Demo District A1" },
+  { id: 87002, cityId: 86001, name: "Demo District A2" },
+  { id: 87003, cityId: 86002, name: "Demo District B1" },
+  { id: 87004, cityId: 86002, name: "Demo District B2" },
+] satisfies (ISelectAll & { cityId: number })[];
+
+// These satisfy eager boot requests for controls excluded from the read-only UI.
+export const emptyOutletLookup: ISelectAll[] = [];
+
+type DemoOutlet = IPoints & { furniture_list: IFurniturePointCount[] };
+const equipmentNames = ["Demo Display", "Demo Rack"];
+const outletNames = [
+  "Central Demo Market",
+  "Riverside Demo Store",
+  "North Point Demo Shop",
+  "City Center Demo Market",
+  "West District Demo Store",
+  "East Point Demo Shop",
+  "Green Avenue Demo Market",
+  "Metro Demo Store",
+  "Sunrise Demo Shop",
+  "Parkside Demo Market",
+  "South Gate Demo Store",
+  "Harbor Demo Shop",
+];
+
+// Independent of the six-outlet Route Ordering fixture and its save validation.
+const outletRows: DemoOutlet[] = outletNames.map((name, index) => {
+  const city = outletCities[Math.floor(index / 6)];
+  const district = outletDistricts[Math.floor(index / 3)];
+  const agent = agents[index % agents.length];
+  const day = weekdays[index % weekdays.length];
+  const category = `Demo Category ${index % 2 === 0 ? "Alpha" : "Beta"}`;
+  return {
+    id: 88001 + index,
+    name,
+    code: `DEMO-POINT-${String(index + 1).padStart(3, "0")}`,
+    city_id: city.id,
+    city: city.name,
+    district_id: district.id,
+    district: district.name,
+    location: `Demo Zone ${String(index + 1).padStart(2, "0")}`,
+    orientir: `Demo Landmark ${String(index + 1).padStart(2, "0")}`,
+    status: index % 4 !== 3,
+    tradCategory: category,
+    trade_category: category,
+    tradeCategoryId: 89001 + (index % 2),
+    trade_category_id: 89001 + (index % 2),
+    trade_agent_id: agent.id,
+    trade_agent: agent.name,
+    trade_channel_id: 90001 + (index % 2),
+    trade_channel: `Demo Channel ${index % 2 === 0 ? "Alpha" : "Beta"}`,
+    day_id: day.id,
+    day: day.name,
+    ekspeditor_id: 85001 + (index % 2),
+    ekspeditor: `Delivery Demo ${(index % 2) + 1}`,
+    updated_at: `0${(index % 7) + 1}.01.2030`,
+    debt: index % 3 === 0 ? 0 : (index + 1) * 125,
+    furniture_list:
+      index % 4 === 0
+        ? []
+        : equipmentNames.map((equipment, item) => ({
+            name: equipment,
+            count: ((index + item) % 3) + 1,
+          })),
+  };
+});
+
+export interface OutletQuery {
+  name: string;
+  agentId?: number;
+  cityId?: number;
+  districtId?: number;
+  pageNumber: number;
+  pageSize: number;
+}
+
+export function outletList(query: OutletQuery) {
+  const filtered = outletRows.filter(
+    (row) =>
+      row.name.toLowerCase().includes(query.name.toLowerCase()) &&
+      (query.agentId === undefined || row.trade_agent_id === query.agentId) &&
+      (query.cityId === undefined || row.city_id === query.cityId) &&
+      (query.districtId === undefined || row.district_id === query.districtId),
+  );
+  return {
+    items: filtered.slice(
+      (query.pageNumber - 1) * query.pageSize,
+      query.pageNumber * query.pageSize,
+    ),
+    total: filtered.length,
+    pageCount: Math.ceil(filtered.length / query.pageSize),
+    // Keep entries at zero for empty results; the existing store ignores [].
+    furniture_list: equipmentNames.map((name) => ({
+      name,
+      count: filtered.reduce(
+        (total, row) =>
+          total +
+          (row.furniture_list.find((item) => item.name === name)?.count ?? 0),
+        0,
+      ),
+    })),
+  };
 }

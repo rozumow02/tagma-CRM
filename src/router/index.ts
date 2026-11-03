@@ -265,7 +265,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (DEMO_MODE) {
-    if (typeof to.name === "string" && ["totalSales", "promotions", "routeOrders"].includes(to.name)) {
+    if (typeof to.name === "string" && ["totalSales", "promotions", "routeOrders", "points"].includes(to.name)) {
       return next();
     }
     return next({ name: "totalSales", replace: true });

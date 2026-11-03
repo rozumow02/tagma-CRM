@@ -1,12 +1,12 @@
 <template>
   <TwTable
-    :headers="headers"
+    :headers="DEMO_MODE ? headers.filter(header => header.value !== 'action') : headers"
     :rows="points"
     :loading="isLoading"
     table-height-offset="115"
     @row-double-click="handleRowDoubleClick"
   >
-    <template #action="{ row }">
+    <template v-if="!DEMO_MODE" #action="{ row }">
       <el-popover :visible="row.visible" popper-class="!p-1" trigger="hover">
         <template #reference>
           <button
@@ -80,6 +80,7 @@
 </template>
 
 <script setup lang="ts">
+import { DEMO_MODE } from "@/demo/config";
 import { onClickOutside } from "@vueuse/core";
 const target = ref(null);
 watch(
@@ -181,6 +182,7 @@ const headers = [
 }>;
 
 const handleRowDoubleClick = (row: IPoints) => {
+  if (DEMO_MODE) return;
   router.push({ name: "view", params: { id: row.id } });
 };
 </script>
