@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { DEMO_MODE } from "@/demo/config";
 import { requestApi } from "@/api";
 import Draggable from "@/components/Drag/draggable.vue";
 import HorizontalFilter from "@/components/filter/horizontalFilter.vue";
@@ -56,6 +57,7 @@ const sortableDrag = () => {
   <div class="border rounded-lg">
     <Header :title="Trans.t('menuItems.routes')">
       <ElButton
+        v-if="!DEMO_MODE"
         type="primary"
         @click="storeRouteOrders.FETCH_ROUTE_ORDERS_EXCEL"
       >

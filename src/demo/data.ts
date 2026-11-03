@@ -9,53 +9,57 @@ import type {
 } from "@/types";
 
 export const agents = [
-  { id: 81001, name: "Agent Demo 01" },
-  { id: 81002, name: "Agent Demo 02" },
+  { id: 81001, name: "Agent 01" },
+  { id: 81002, name: "Agent 02" },
 ] satisfies ISelectAll[];
 
 export const products = [
   {
     Id: 91001,
     code: "DEMO-ALPHA-01",
-    name: "Demo Group Alpha",
-    product_type_name: "Product Alpha",
-    taste: "Variant 01",
+    name: "AvenSpring",
+    product_type_name: "Still Water",
+    taste: "Classic",
     volume: 1,
     group_id: 92001,
   },
   {
     Id: 91002,
     code: "DEMO-ALPHA-02",
-    name: "Demo Group Alpha",
-    product_type_name: "Product Alpha",
-    taste: "Variant 02",
+    name: "AvenSpring",
+    product_type_name: "Still Water",
+    taste: "Premium",
     volume: 1,
     group_id: 92001,
   },
   {
     Id: 91003,
     code: "DEMO-BETA-01",
-    name: "Demo Group Beta",
-    product_type_name: "Product Beta",
-    taste: "Variant 01",
+    name: "OrinLeaf",
+    product_type_name: "Fruit Drink",
+    taste: "Citrus",
     volume: 0.5,
     group_id: 92002,
   },
   {
     Id: 91004,
     code: "DEMO-BETA-02",
-    name: "Demo Group Beta",
-    product_type_name: "Product Beta",
-    taste: "Variant 02",
+    name: "OrinLeaf",
+    product_type_name: "Fruit Drink",
+    taste: "Berry",
     volume: 0.5,
     group_id: 92002,
   },
 ] satisfies IAllProduct[];
 
-export const outlets: ISelectAll[] = Array.from({ length: 6 }, (_, index) => ({
-  id: 83001 + index,
-  name: `Demo Market ${String(index + 1).padStart(2, "0")}`,
-}));
+export const outlets: ISelectAll[] = [
+  "Central Market",
+  "Riverside Store",
+  "North Point Shop",
+  "City Center Market",
+  "West District Store",
+  "East Point Shop",
+].map((name, index) => ({ id: 83001 + index, name }));
 
 export const weekdays: ISelectAll[] = [
   "Monday",
@@ -108,14 +112,47 @@ export function sales(agentId: number | null): IPlanMain[] {
 const promotionRows: IPromotions[] = [
   {
     id: 84001,
-    name_ru: "Demo Promotion 01",
-    name_tm: "Demo Promotion 01",
+    name_ru: "Winter Retail Campaign",
+    name_tm: "Winter Retail Campaign",
     start: "01.01.2030",
     end: "31.12.2030",
     created_at: "01.01.2030",
     count: 3,
     status: true,
     list: [91001, 91002],
+  },
+  {
+    id: 84002,
+    name_ru: "New Year Bundle",
+    name_tm: "New Year Bundle",
+    start: "01.01.2030",
+    end: "31.01.2030",
+    created_at: "01.01.2030",
+    count: 2,
+    status: true,
+    list: [91001, 91003],
+  },
+  {
+    id: 84003,
+    name_ru: "Premium Line Promotion",
+    name_tm: "Premium Line Promotion",
+    start: "01.02.2030",
+    end: "28.02.2030",
+    created_at: "01.01.2030",
+    count: 4,
+    status: true,
+    list: [91002, 91004],
+  },
+  {
+    id: 84004,
+    name_ru: "Weekend Store Offer",
+    name_tm: "Weekend Store Offer",
+    start: "05.01.2030",
+    end: "06.01.2030",
+    created_at: "01.01.2030",
+    count: 2,
+    status: false,
+    list: [91003, 91004],
   },
 ];
 
@@ -173,35 +210,35 @@ export function saveRouteOrder(
 }
 
 export const outletCities = [
-  { id: 86001, name: "Demo City Alpha" },
-  { id: 86002, name: "Demo City Beta" },
+  { id: 86001, name: "North City" },
+  { id: 86002, name: "South City" },
 ] satisfies ISelectAll[];
 
 export const outletDistricts = [
-  { id: 87001, cityId: 86001, name: "Demo District A1" },
-  { id: 87002, cityId: 86001, name: "Demo District A2" },
-  { id: 87003, cityId: 86002, name: "Demo District B1" },
-  { id: 87004, cityId: 86002, name: "Demo District B2" },
+  { id: 87001, cityId: 86001, name: "Central District" },
+  { id: 87002, cityId: 86001, name: "Riverside District" },
+  { id: 87003, cityId: 86002, name: "West District" },
+  { id: 87004, cityId: 86002, name: "East District" },
 ] satisfies (ISelectAll & { cityId: number })[];
 
 // These satisfy eager boot requests for controls excluded from the read-only UI.
 export const emptyOutletLookup: ISelectAll[] = [];
 
 type DemoOutlet = IPoints & { furniture_list: IFurniturePointCount[] };
-const equipmentNames = ["Demo Display", "Demo Rack"];
+const equipmentNames = ["Display Stand", "Cooling Rack"];
 const outletNames = [
-  "Central Demo Market",
-  "Riverside Demo Store",
-  "North Point Demo Shop",
-  "City Center Demo Market",
-  "West District Demo Store",
-  "East Point Demo Shop",
-  "Green Avenue Demo Market",
-  "Metro Demo Store",
-  "Sunrise Demo Shop",
-  "Parkside Demo Market",
-  "South Gate Demo Store",
-  "Harbor Demo Shop",
+  "Central Market",
+  "Riverside Store",
+  "North Point Shop",
+  "City Center Market",
+  "West District Store",
+  "East Point Shop",
+  "Green Avenue Market",
+  "Metro Store",
+  "Sunrise Shop",
+  "Parkside Market",
+  "South Gate Store",
+  "Harbor Shop",
 ];
 
 // Independent of the six-outlet Route Ordering fixture and its save validation.
@@ -210,7 +247,7 @@ const outletRows: DemoOutlet[] = outletNames.map((name, index) => {
   const district = outletDistricts[Math.floor(index / 3)];
   const agent = agents[index % agents.length];
   const day = weekdays[index % weekdays.length];
-  const category = `Demo Category ${index % 2 === 0 ? "Alpha" : "Beta"}`;
+  const category = index % 2 === 0 ? "Retail" : "Convenience";
   return {
     id: 88001 + index,
     name,
@@ -219,8 +256,8 @@ const outletRows: DemoOutlet[] = outletNames.map((name, index) => {
     city: city.name,
     district_id: district.id,
     district: district.name,
-    location: `Demo Zone ${String(index + 1).padStart(2, "0")}`,
-    orientir: `Demo Landmark ${String(index + 1).padStart(2, "0")}`,
+    location: `Zone ${String(index + 1).padStart(2, "0")}`,
+    orientir: `Landmark ${String(index + 1).padStart(2, "0")}`,
     status: index % 4 !== 3,
     tradCategory: category,
     trade_category: category,
@@ -229,11 +266,11 @@ const outletRows: DemoOutlet[] = outletNames.map((name, index) => {
     trade_agent_id: agent.id,
     trade_agent: agent.name,
     trade_channel_id: 90001 + (index % 2),
-    trade_channel: `Demo Channel ${index % 2 === 0 ? "Alpha" : "Beta"}`,
+    trade_channel: index % 2 === 0 ? "Mini Market" : "Supermarket",
     day_id: day.id,
     day: day.name,
     ekspeditor_id: 85001 + (index % 2),
-    ekspeditor: `Delivery Demo ${(index % 2) + 1}`,
+    ekspeditor: `Delivery 0${(index % 2) + 1}`,
     updated_at: `0${(index % 7) + 1}.01.2030`,
     debt: index % 3 === 0 ? 0 : (index + 1) * 125,
     furniture_list:
