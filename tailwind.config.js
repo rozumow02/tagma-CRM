@@ -21,7 +21,7 @@ module.exports = {
         checkingBg: '#567EFE',  // Checking background (20%)
         success: '#56CE56',     // Success
         error: '#F04438',       // Error
-        warning: '#F3A852',     // Warning
+        warning: '#8d68ad',     // Warning
         checking: '#567EFE',    // Checking
       },
       boxShadow: {
