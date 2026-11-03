@@ -30,7 +30,7 @@ export const useNotesStore = defineStore("notes", () => {
       setter(data.items);
       query.pageCount = data.pageCount;
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
 
@@ -46,7 +46,7 @@ export const useNotesStore = defineStore("notes", () => {
       // fetchData(url, (data) => (notes.value = data));
       refetch();
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
 
@@ -57,7 +57,7 @@ export const useNotesStore = defineStore("notes", () => {
       dialogs.isBlock = false;
       refetch();
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
 

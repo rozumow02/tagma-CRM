@@ -41,7 +41,7 @@ export const useMerchandisersStore = defineStore("merchandisers", () => {
       merchandisers.value = data.items || [];
       query.pageCount = data.pageCount;
     } catch (error) {
-      console.log(error);
+      console.error("Operation failed.");
     }
   };
 

@@ -174,7 +174,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
     if (valid) {
       emit("updateForms");
     } else {
-      console.log("error submit!", fields);
+      console.warn("Form validation failed.");
     }
   });
 };

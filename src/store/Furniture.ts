@@ -47,7 +47,7 @@ export const useFurnitureStore = defineStore("furniture", () => {
       query.pageCount = data.pageCount;
       query.total = data?.total;
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
   const fetchFurnitureByPoint = async (trade_point_id: number) => {
@@ -57,7 +57,7 @@ export const useFurnitureStore = defineStore("furniture", () => {
       });
       furnitureForPoint.value = data;
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
   const handleSubmit = async (
@@ -75,7 +75,7 @@ export const useFurnitureStore = defineStore("furniture", () => {
         type: "success",
       });
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
   const fetchAllFurnitures = async () => {
@@ -83,7 +83,7 @@ export const useFurnitureStore = defineStore("furniture", () => {
       const { data } = await requestApi("furniture/select");
       allFurnitures.value = data;
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
 

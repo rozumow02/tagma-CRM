@@ -49,7 +49,7 @@ export const useContactsStore = defineStore("contacts", () => {
       });
       contacts.value = data == null ? [] : data;
     } catch (error) {
-      console.log(error);
+      console.error("Operation failed.");
     } finally {
       // loading.close();
     }

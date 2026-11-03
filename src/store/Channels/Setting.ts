@@ -78,7 +78,6 @@ export const useSettingChannelsStore = defineStore("settingChannels", () => {
   };
 
   const FETCH_CHANNELS_DELETE = async () => {
-    console.log(selectedId.value, isActiveDialog.value);
     channelsApi(
       `channels/${isActiveDialog.value}s/${selectedId.value}`,
       "DELETE",

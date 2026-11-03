@@ -36,7 +36,7 @@ export const useDilerProductsStore = defineStore("dilerProducts", () => {
       query.pageCount = data.pageCount;
       query.total = data?.total;
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
   const handleSubmit = async (
@@ -50,7 +50,7 @@ export const useDilerProductsStore = defineStore("dilerProducts", () => {
       dialogs.isAdd = dialogs.isBlock = dialogs.isUpdate = false;
       fetchData("");
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
 

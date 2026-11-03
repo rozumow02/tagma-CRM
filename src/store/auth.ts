@@ -1,4 +1,5 @@
 import { loginApi } from "@/api/auth";
+import { DEMO_MODE } from "@/demo/config";
 import router from "@/router";
 import type { AxiosError } from "axios";
 import { defineStore } from "pinia";
@@ -35,6 +36,7 @@ export const useAuthStore = defineStore("auth", () => {
     }
   };
   const logout = () => {
+    if (DEMO_MODE) return;
     userLoggedIn.value = false;
     clearUserData();
     localStorage.clear();

@@ -42,7 +42,7 @@ export const useFilterStore = defineStore("filter", () => {
         });
       }
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
   const fetchFilters = async (path: string) => {
@@ -54,7 +54,7 @@ export const useFilterStore = defineStore("filter", () => {
       );
       filters.value = data;
     } catch (error) {
-      console.log(error);
+      console.error("Operation failed.");
     }
   };
 
@@ -63,7 +63,7 @@ export const useFilterStore = defineStore("filter", () => {
       const { data } = await requestApi(`points/cities`);
       allCities.value = data;
     } catch (error) {
-      console.error("Cities fetching error:", error);
+      console.error("Cities fetching error");
     }
   };
   // Tumanni yangilaganda tumanlar ma'lumotlarini olish
@@ -72,7 +72,7 @@ export const useFilterStore = defineStore("filter", () => {
       const { data } = await requestApi(`points/districts?cityId=${cityId}`);
       allDistricts.value = data;
     } catch (error) {
-      console.error("District fetching error:", error);
+      console.error("District fetching error");
     }
   };
 
@@ -84,7 +84,7 @@ export const useFilterStore = defineStore("filter", () => {
       );
       allPoints.value = data;
     } catch (error) {
-      console.error("Points fetching error:", error);
+      console.error("Points fetching error");
     }
   };
 
@@ -118,7 +118,7 @@ export const useFilterStore = defineStore("filter", () => {
       const { data } = await requestApi("orders/models", "GET", params);
       allTaste.value = data;
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
   // Watch funksiyalari

@@ -47,7 +47,7 @@ export const useEkspeditorsStore = defineStore("ekspeditors", () => {
       ekspeditors.value = data.items;
       query.pageCount = data.pageCount;
     } catch (error) {
-      console.log(error);
+      console.error("Operation failed.");
     }
   };
 
@@ -113,7 +113,7 @@ export const useEkspeditorsStore = defineStore("ekspeditors", () => {
       });
       remainderToEkspeditor.value = data;
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
 

@@ -48,7 +48,7 @@ export const useDilerStore = defineStore("diler", () => {
       query.pageCount = data.pageCount;
       query.total = data?.total;
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
   const handleSubmit = async (
@@ -69,7 +69,7 @@ export const useDilerStore = defineStore("diler", () => {
           false;
       fetchData("dealer");
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
   const fetchAllDilers = async () => {
@@ -77,7 +77,7 @@ export const useDilerStore = defineStore("diler", () => {
       const { data } = await requestApi("dealer/all");
       allDilers.value = data;
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
 

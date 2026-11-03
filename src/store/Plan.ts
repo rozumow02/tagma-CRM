@@ -48,7 +48,7 @@ export const usePlanStore = defineStore("plan", () => {
       query.pageCount = data.pageCount;
       query.total = data.total;
     } catch (error) {
-      console.log(error);
+      console.error("Operation failed.");
     }
   };
 
@@ -66,7 +66,7 @@ export const usePlanStore = defineStore("plan", () => {
       });
       await FETCH_PLANS();
     } catch (error) {
-      console.log(error);
+      console.error("Operation failed.");
     }
   };
 
@@ -84,7 +84,7 @@ export const usePlanStore = defineStore("plan", () => {
       dialogs.update = false;
       await FETCH_PLANS();
     } catch (error) {
-      console.log(error);
+      console.error("Operation failed.");
     }
   };
 
@@ -97,7 +97,7 @@ export const usePlanStore = defineStore("plan", () => {
       dialogs.block = false;
       await FETCH_PLANS();
     } catch (error) {
-      console.log(error);
+      console.error("Operation failed.");
     }
   };
   const FETCH_ALL_SELECT = async () => {

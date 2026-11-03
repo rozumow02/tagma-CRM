@@ -36,7 +36,7 @@ export const useRemainderStore = defineStore("remainder", () => {
       const { data } = await requestApi("ekspeditors/car/galyndy/array", "GET");
       remainderData.value = data;
     } catch (error) {
-      console.log(error);
+      console.error("Operation failed.");
     } finally {
       loading.value = false;
     }

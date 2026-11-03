@@ -39,7 +39,7 @@ export const useCityStore = defineStore("city", () => {
       cities.value = data.items;
       query.pageCount = data.pageCount;
     } catch (error) {
-      console.log(error);
+      console.error("Operation failed.");
     }
   };
 

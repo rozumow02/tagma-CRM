@@ -19,7 +19,7 @@ export const useSalesStore = defineStore("sales", () => {
       const { data } = await requestApi(url, "GET", query);
       sales.value = data;
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     } finally {
       loadingSales.value = false;
     }

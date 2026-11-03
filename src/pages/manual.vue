@@ -3,6 +3,7 @@ import Header from "@/components/main/Header.vue";
 import Dialog from "@/components/modal/Dialog.vue";
 import PhotoSection from "@/components/photos/photoSection.vue";
 import Trans from "@/i18n/translation";
+import { sanitizeRichHtml } from "@/utils/sanitizeRichHtml";
 import { useManualStore } from "@/store/Manual";
 import type { IFormOption } from "@/types";
 import Add from "@/views/Dynamic/add.vue";
@@ -83,7 +84,7 @@ const computedPhotos = computed(() => {
       </div>
       <div class="p-4 flex justify-between">
         <h1 class="text-gray3">{{ Trans.t("content_ru") }}:</h1>
-        <span v-html="manuals?.content_ru"></span>
+        <span v-html="sanitizeRichHtml(manuals?.content_ru)"></span>
       </div>
     </div>
     <div>
@@ -93,7 +94,7 @@ const computedPhotos = computed(() => {
       </div>
       <div class="p-4 flex justify-between">
         <h1 class="text-gray3">{{ Trans.t("content_tm") }}:</h1>
-        <span v-html="manuals?.content_tm"></span>
+        <span v-html="sanitizeRichHtml(manuals?.content_tm)"></span>
       </div>
     </div>
   </div>

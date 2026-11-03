@@ -65,7 +65,7 @@ export const usePromoStore = defineStore("promo", () => {
       query.pageCount = data.pageCount;
       query.total = data.total;
     } catch (error) {
-      console.log(error);
+      console.error("Operation failed.");
     }
   };
 
@@ -78,7 +78,7 @@ export const usePromoStore = defineStore("promo", () => {
       });
       await FETCH_PROMO();
     } catch (error) {
-      console.log(error);
+      console.error("Operation failed.");
     }
   };
 
@@ -106,7 +106,7 @@ export const usePromoStore = defineStore("promo", () => {
       dialogs.update = false;
       await FETCH_PROMO();
     } catch (error) {
-      console.log(error);
+      console.error("Operation failed.");
     }
   };
 
@@ -119,7 +119,7 @@ export const usePromoStore = defineStore("promo", () => {
       dialogs.block = false;
       await FETCH_PROMO();
     } catch (error) {
-      console.log(error);
+      console.error("Operation failed.");
     }
   };
   const FETCH_SOLD_PRODUCTS = async (promoId?: number) => {
@@ -141,7 +141,7 @@ export const usePromoStore = defineStore("promo", () => {
       const { data } = await requestApi("promo/sold-products", "GET", params);
       soldProducts.value = Array.isArray(data) ? data : [];
     } catch (error) {
-      console.log(error);
+      console.error("Operation failed.");
     } finally {
       soldProductsLoading.value = false;
     }

@@ -77,7 +77,7 @@ export const useAgentsStore = defineStore("agents", () => {
       agents.value = data.items;
       query.pageCount = data.pageCount;
     } catch (error) {
-      console.log(error);
+      console.error("Operation failed.");
     }
   };
 
@@ -180,7 +180,7 @@ export const useAgentsStore = defineStore("agents", () => {
       agentDebt.terminal = debt.terminal;
       agentDebt.transfer = debt.transfer;
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
 
@@ -198,7 +198,7 @@ export const useAgentsStore = defineStore("agents", () => {
         };
       });
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
 
@@ -207,7 +207,7 @@ export const useAgentsStore = defineStore("agents", () => {
       const { data } = await requestApi("payments/types");
       allAgentPaymentTypes.value = data;
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
   const FETCH_AGENT_PAYMENT_CONFIRM = async (
@@ -232,7 +232,7 @@ export const useAgentsStore = defineStore("agents", () => {
           isAccept.value = false;
           refetch();
         } catch (error) {
-          console.error(error);
+          console.error("Operation failed.");
         }
       })
       .catch(() => {
@@ -260,7 +260,7 @@ export const useAgentsStore = defineStore("agents", () => {
           isAccept.value = false;
           refetch();
         } catch (error) {
-          console.error(error);
+          console.error("Operation failed.");
         }
       })
       .catch(() => {
@@ -288,7 +288,7 @@ export const useAgentsStore = defineStore("agents", () => {
           isUpdateDialog.value = false;
           refetch();
         } catch (error) {
-          console.error(error);
+          console.error("Operation failed.");
         }
       })
       .catch(() => {
@@ -316,7 +316,7 @@ export const useAgentsStore = defineStore("agents", () => {
           isCreateDebtDialog.value = false;
           refetch();
         } catch (error) {
-          console.error(error);
+          console.error("Operation failed.");
         }
       })
       .catch(() => {

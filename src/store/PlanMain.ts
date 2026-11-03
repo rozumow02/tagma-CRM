@@ -21,7 +21,7 @@ export const usePlanMainStore = defineStore("planMain", () => {
       const { data } = await requestApi("plans/main", "GET", planMainQuery);
       planMain.value = data;
     } catch (error) {
-      console.log(error);
+      console.error("Operation failed.");
     } finally {
       loading.value = false;
     }

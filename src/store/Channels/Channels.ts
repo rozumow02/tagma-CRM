@@ -55,12 +55,11 @@ export const useChannelsStore = defineStore("channels", () => {
       channels.value = data.items;
       query.pageCount = data.pageCount;
     } catch (error) {
-      console.log(error);
+      console.error("Operation failed.");
     }
   };
 
   const FETCH_CHANNELS_CREATE = async (value: ITRADE_CHANNELS) => {
-    console.log(value, formChannelsGroup);
   };
   const FETCH_CHANNELS_CONNECT_GROUP = async () => {
     await channelsPostApi(formChannelsGroup).then(() => {

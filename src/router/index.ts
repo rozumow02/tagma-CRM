@@ -1,4 +1,5 @@
 import { FILTERS_SLUG } from "@/constants";
+import { DEMO_MODE } from "@/demo/config";
 import Trans from "@/i18n/translation";
 import { useAuthStore } from "@/store/auth";
 import { useUserData } from "@/store/UseAppDataStore";
@@ -263,6 +264,12 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  if (DEMO_MODE) {
+    if (typeof to.name === "string" && ["totalSales", "promotions", "routeOrders"].includes(to.name)) {
+      return next();
+    }
+    return next({ name: "totalSales", replace: true });
+  }
   const { getUserData } = useUserData();
   if (
     to.matched.some((record) => record.meta.requiresAuth) &&

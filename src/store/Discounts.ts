@@ -162,7 +162,7 @@ export const useDiscountsStore = defineStore("discounts", () => {
       query.total = data.total;
       step.value = 1;
     } catch (error) {
-      console.log(error);
+      console.error("Operation failed.");
     }
   };
 
@@ -360,7 +360,7 @@ export const useDiscountsStore = defineStore("discounts", () => {
       );
       pointsByAgent.value = data;
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     } finally {
       loadingPoints.value = false;
     }

@@ -39,7 +39,7 @@ const filteredMappedRemainder = computed(() => {
         return { ...row, map };
       });
   } catch (error) {
-    console.log(error);
+    console.error("Operation failed.");
   } finally {
     loading.value = false;
   }
@@ -52,13 +52,14 @@ const filteredEkspeditors = computed(() => {
     (e) => e.id === queryRemainder.value.ekspeditor_id,
   );
 });
-function highlightText(text: string, search: string) {
-  if (!search) return text; // no search → no highlight
+function highlightParts(text: string, search: string | undefined) {
+  if (!search) return [{ text, highlighted: false }];
 
   const escaped = search.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const regex = new RegExp(`(${escaped})`, "gi");
-
-  return text.replace(regex, '<mark class="highlight">$1</mark>');
+  return text.split(new RegExp(`(${escaped})`, "gi")).map((part, index) => ({
+    text: part,
+    highlighted: index % 2 === 1,
+  }));
 }
 </script>
 
@@ -78,14 +79,18 @@ function highlightText(text: string, search: string) {
       <!-- Name Column -->
       <el-table-column :label="Trans.t('name')" prop="name" :width="200">
         <template #default="{ row }">
-          <span
-            v-html="
-              highlightText(
+          <span>
+            <template
+              v-for="(part, index) in highlightParts(
                 `${row.taste} ${row.name} ${row.volume} ${Trans.t('litr')}`,
                 queryRemainder.name,
-              )
-            "
-          ></span>
+              )"
+              :key="index"
+            >
+              <mark v-if="part.highlighted" class="highlight">{{ part.text }}</mark>
+              <template v-else>{{ part.text }}</template>
+            </template>
+          </span>
         </template>
       </el-table-column>
 

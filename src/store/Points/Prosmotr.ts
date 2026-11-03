@@ -95,7 +95,7 @@ export const useProsmotrStore = defineStore("prosmotr", () => {
       const { data } = await requestApi("points/order", "GET", query);
       pointByOrders.value = data;
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
   const FETCH_POINT_BY_PRODUCTS = async (query: IFormPointByOrders) => {
@@ -103,7 +103,7 @@ export const useProsmotrStore = defineStore("prosmotr", () => {
       const { data } = await requestApi("points/product", "GET", query);
       pointByProducts.value = data;
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
   const FETCH_POINTS_DAYS_UPDATE = async (id: number, days: number[]) => {

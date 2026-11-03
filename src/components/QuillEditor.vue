@@ -11,6 +11,7 @@ import "quill/dist/quill.snow.css";
 import "quill/dist/quill.bubble.css";
 
 import Quill from "quill";
+import { sanitizeRichHtml } from "@/utils/sanitizeRichHtml";
 import { onMounted, ref, watch, onUnmounted, onBeforeUnmount } from "vue";
 
 const defaultOptions = {
@@ -69,8 +70,8 @@ export default {
       (val) => {
         if (state.quill) {
           if (val && val !== _content) {
-            _content = val;
-            state.quill.pasteHTML(val);
+            _content = sanitizeRichHtml(val);
+            state.quill.clipboard.dangerouslyPasteHTML(_content, "silent");
           } else if (!val) {
             state.quill.setText("");
           }
@@ -83,8 +84,8 @@ export default {
       (val) => {
         if (state.quill) {
           if (val && val !== _content) {
-            _content = val;
-            state.quill.pasteHTML(val);
+            _content = sanitizeRichHtml(val);
+            state.quill.clipboard.dangerouslyPasteHTML(_content, "silent");
           } else if (!val) {
             state.quill.setText("");
           }
@@ -121,13 +122,8 @@ export default {
         state.editorOption.readOnly = props.disabled ? true : false;
         // Instance
         state.quill = new Quill(editor.value, state.editorOption);
-        // console.log('intilized')
-
-        editor.value.children[0].innerHTML = props.modelValue;
-        // Set editor content
-        if (props.value) {
-          state.quill.pasteHTML(props.value);
-        }
+        _content = sanitizeRichHtml(props.value || props.modelValue);
+        state.quill.clipboard.dangerouslyPasteHTML(_content, "silent");
 
         // Mark model as touched if editor lost focus
         state.quill.on("selection-change", (range) => {
@@ -143,7 +139,7 @@ export default {
           if (props.disabled) {
             state.quill.enable(false);
           }
-          let html = editor.value.children[0].innerHTML;
+          let html = sanitizeRichHtml(state.quill.root.innerHTML);
           const quill = state.quill;
           const text = state.quill.getText();
           if (html === "<p><br></p>") html = "";

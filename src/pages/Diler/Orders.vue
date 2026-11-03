@@ -295,7 +295,6 @@ const updatedGroups = (value: IFilteredProducts) => {
 };
 
 const editGroups = (value: IFilteredProducts) => {
-  console.log(value, "editGroups");
 };
 
 const beforeEditGroups = (row: IDilerOrders | any) => {

@@ -156,7 +156,7 @@ export const usePointsStore = defineStore("points", () => {
       query.pageCount = data.pageCount;
       query.total = data.total || 0;
     } catch (error) {
-      console.log(error);
+      console.error("Operation failed.");
       toast(t("messages.error"), {
         type: "error",
       });

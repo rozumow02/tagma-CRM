@@ -1,12 +1,12 @@
 <template>
-  <div ref="selectRef" class="relative mb-2 font-gotham" :class="className">
+  <div ref="selectRef" class="relative mb-2 font-sans" :class="className">
     <div
       class="flex items-center justify-between w-full min-h-[41.5px] px-3 text-left bg-white border rounded-md cursor-pointer focus:outline-none"
       :class="isOpen ? 'border-main' : 'border-gray-300'"
       @click="toggleDropdown"
       :tabindex="0"
     >
-      <span class="block truncate font-gotham font-medium">
+      <span class="block truncate font-sans font-medium">
         {{
           selectedOptions.length > 0
             ? selectedOptions.map((option) => option[labelKey]).join(", ")

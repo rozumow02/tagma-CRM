@@ -49,7 +49,7 @@ export const useDilerOrdersStore = defineStore("dOrders", () => {
           .map((item: IDilerOrders) => item.sum)
           .reduce((a: number, b: number) => a + b, 0);
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
   const handleSubmit = async (
@@ -70,7 +70,7 @@ export const useDilerOrdersStore = defineStore("dOrders", () => {
         type: "success",
       });
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
   const fetchAllProducts = async () => {
@@ -85,7 +85,7 @@ export const useDilerOrdersStore = defineStore("dOrders", () => {
           };
         });
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
   const fetchByDilerOrder = async (id: number) => {
@@ -103,7 +103,7 @@ export const useDilerOrdersStore = defineStore("dOrders", () => {
         });
       }
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
 
@@ -112,7 +112,7 @@ export const useDilerOrdersStore = defineStore("dOrders", () => {
       const { data } = await requestApi("dorders/product", "GET", params);
       dilerInfoProducts.value = data;
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
 

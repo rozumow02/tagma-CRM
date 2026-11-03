@@ -46,7 +46,7 @@ export const useUserStore = defineStore("user", () => {
       users.value = data.items;
       query.pageCount = data.pageCount;
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
 
@@ -65,7 +65,7 @@ export const useUserStore = defineStore("user", () => {
       fetchData("users");
       toast(`${Trans.t("success")}`, { type: "success" });
     } catch (error: any) {
-      console.error(error);
+      console.error("Operation failed.");
       toast(`${error.response.data.message}`, { type: "error" });
     }
   };

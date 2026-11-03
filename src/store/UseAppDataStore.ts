@@ -1,5 +1,6 @@
 // src/composables/useUserData.ts
 import { STORAGE_KEYS, type StorageKeys } from "@/constants/storageKeys";
+import { DEMO_MODE } from "@/demo/config";
 
 /**
  * User ma'lumotlarini boshqarish uchun composable
@@ -11,6 +12,7 @@ export function useUserData() {
    * @returns - saqlangan qiymat
    */
   const getUserData = (key: StorageKeys): string => {
+    if (DEMO_MODE) return key === "ROLE" ? "admin" : "";
     return localStorage.getItem(STORAGE_KEYS[key]) || "";
   };
 
@@ -20,6 +22,7 @@ export function useUserData() {
    * @param value - saqlanadigan qiymat
    */
   const setUserData = (key: StorageKeys, value: string | null): void => {
+    if (DEMO_MODE) return;
     if (value) {
       localStorage.setItem(STORAGE_KEYS[key], value); // Saqlash
     } else {
@@ -31,6 +34,7 @@ export function useUserData() {
    * User ma'lumotlarini tozalash
    */
   const clearUserData = (): void => {
+    if (DEMO_MODE) return;
     Object.values(STORAGE_KEYS).forEach((key) => {
       localStorage.removeItem(key); // Hammasini o'chirish
     });

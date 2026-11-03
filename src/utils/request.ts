@@ -1,24 +1,37 @@
 import Trans from "@/i18n/translation";
+import { DEMO_MODE } from "@/demo/config";
 import router from "@/router";
 import { useUserData } from "@/store/UseAppDataStore";
 import type {
   AxiosError,
   AxiosInstance,
-  AxiosRequestConfig,
   AxiosResponse,
+  AxiosAdapter,
 } from "axios";
 import axios from "axios";
 import { toast } from "vue3-toastify";
 
-const baseURL: string = import.meta.env.VITE_APP_BASE_URL;
-// Create an Axios instance with the base URL
-const service: AxiosInstance = axios.create({
-  baseURL,
-  // timeout: 5000, // Set a timeout for requests (optional)
-});
+const demoOnlyAdapter: AxiosAdapter = async config =>
+  (await import("@/demo/adapter")).demoAdapter(config);
+
+const service: AxiosInstance = axios.create(
+  DEMO_MODE
+    ? { adapter: demoOnlyAdapter }
+    : { baseURL: import.meta.env.VITE_APP_BASE_URL },
+);
 // Request interceptor
 service.interceptors.request.use(
-  (config: AxiosRequestConfig<any> | any) => {
+  (config) => {
+    if (DEMO_MODE) {
+      // Enforce isolation even if an individual call supplies an adapter/base URL.
+      config.adapter = demoOnlyAdapter;
+      config.baseURL = undefined;
+      config.auth = undefined;
+      config.withCredentials = false;
+      config.headers.delete("Authorization");
+      config.headers["language"] = Trans.currentLocale ?? "ru";
+      return config;
+    }
     const { getUserData } = useUserData();
     // You can modify the request configuration here if needed
     config.headers["language"] = Trans.currentLocale ?? "ru";

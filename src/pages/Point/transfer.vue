@@ -142,7 +142,7 @@ const changeAgentPoints = async () => {
     // Refresh points data
     await FETCH_POINTS();
   } catch (error) {
-    console.error("Error changing agent points:", error);
+    console.error("Error changing agent points");
     toast(Trans.t("messages.error"), {
       type: "error",
     });

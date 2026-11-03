@@ -43,7 +43,7 @@ export const useCategoriesStore = defineStore("categories", () => {
       categories.value = data.items ? data.items : [];
       query.pageCount = data.pageCount;
     } catch (error) {
-      console.log(error);
+      console.error("Operation failed.");
     }
   };
 

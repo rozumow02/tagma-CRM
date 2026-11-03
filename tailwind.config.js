@@ -41,9 +41,9 @@ module.exports = {
       medium: '500',
       regular: '400',
     },
-    /* fontFamily: {
-      gotham: ['Gotham', 'sans-serif'], // Gotham shriftini qo'shdik
-    }, */
+    fontFamily: {
+      sans: ['ui-sans-serif', 'system-ui', 'sans-serif'],
+    },
     },
   },
   plugins: [

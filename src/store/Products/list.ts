@@ -50,7 +50,7 @@ export const useProductListStore = defineStore("productList", () => {
       query.pageCount = data.pageCount;
       query.total = data.total;
     } catch (error) {
-      console.log(error);
+      console.error("Operation failed.");
     }
   };
 

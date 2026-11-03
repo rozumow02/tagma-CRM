@@ -28,9 +28,8 @@ export const useGiftsStore = defineStore("gifts", () => {
       gifts.value = data.items;
       query.pageCount = data.pageCount;
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
-    console.log(gifts.value, "ts");
   };
 
   // Create and update gifts
@@ -43,7 +42,7 @@ export const useGiftsStore = defineStore("gifts", () => {
       dialogs.isAdd = dialogs.isUpdate = false;
       fetchGifts();
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
 
@@ -55,7 +54,7 @@ export const useGiftsStore = defineStore("gifts", () => {
       Object.assign(formGifts, data);
       dialogs.isUpdate = true;
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
 
@@ -65,7 +64,7 @@ export const useGiftsStore = defineStore("gifts", () => {
       const { data } = await giftsApi("gifts/types");
       giftTypes.value = data;
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
 
@@ -78,7 +77,7 @@ export const useGiftsStore = defineStore("gifts", () => {
       dialogs.isBlock = false;
       fetchGifts();
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
 

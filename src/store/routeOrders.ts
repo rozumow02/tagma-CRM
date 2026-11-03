@@ -22,7 +22,7 @@ export const useRouteOrdersStore = defineStore("routeOrders", () => {
       const { data } = await requestApi("routes/orders/get", "GET", query);
       routeOrders.value = data;
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
 
@@ -31,7 +31,7 @@ export const useRouteOrdersStore = defineStore("routeOrders", () => {
       const { data } = await requestApi("points/agents");
       allAgents.value = data;
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
 
@@ -40,7 +40,7 @@ export const useRouteOrdersStore = defineStore("routeOrders", () => {
       const { data } = await requestApi("routes/days");
       pointsByDays.value = data;
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
   const handleSubmit = async (data: ISelectAll[]) => {
@@ -50,7 +50,7 @@ export const useRouteOrdersStore = defineStore("routeOrders", () => {
         type: "success",
       });
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
   const FETCH_ROUTE_ORDERS_EXCEL = async () => {

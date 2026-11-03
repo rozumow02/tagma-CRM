@@ -9,9 +9,12 @@
         alt="tagma"
         class="object-contain h-6 mr-1"
       />
-      <h1 class="text-p1 font-gotham font-medium text-main uppercase">Tagma</h1>
+      <h1 class="text-p1 font-sans font-medium text-main uppercase">Tagma</h1>
     </div>
 
+    <p v-if="DEMO_MODE" class="border-b px-4 py-3 text-xs leading-relaxed" role="note">
+      Portfolio demo · synthetic data · changes reset on reload
+    </p>
     <el-scrollbar height="calc(100vh- 220px)" class="">
       <!-- Navigation -->
       <nav class="flex-1">
@@ -87,7 +90,7 @@
     </el-scrollbar>
     <!-- Footer -->
     <div class="p-5 border-t flex justify-between items-center">
-      <button class="hover:text-gray-800 flex items-center" @click="logout">
+      <button v-if="!DEMO_MODE" class="hover:text-gray-800 flex items-center" @click="logout">
         <log-out-icon class="w-5 h-5 mr-2" />
         <RouterLink to="/login">{{ t("exit") }}</RouterLink>
       </button>
@@ -113,6 +116,7 @@
 </template>
 
 <script setup lang="ts">
+import { DEMO_MODE } from "@/demo/config";
 import { ref, onMounted } from "vue";
 import { ElScrollbar } from "element-plus";
 import { useRoute } from "vue-router";
@@ -561,6 +565,14 @@ const menuItems = ref<MenuItem[]>([
     isAdmin: "admin",
   },
 ]);
+
+if (DEMO_MODE) {
+  menuItems.value = [
+    { id: 1, nameKey: "total_sales", path: "total-sales", active: false },
+    { id: 2, nameKey: "promotions", path: "promotions", active: false },
+    { id: 3, nameKey: "routes", path: "route-orders", active: false },
+  ];
+}
 
 const toggleActive = (item: MenuItem) => {
   if (item.children) {

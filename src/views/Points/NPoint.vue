@@ -47,7 +47,7 @@ watch(
         );
         allDistricts.value = data;
       } catch (error) {
-        console.log(error);
+        console.error("Operation failed.");
       }
   },
 );
@@ -61,7 +61,7 @@ watch(
         );
         allPoints.value = data;
       } catch (error) {
-        console.log(error);
+        console.error("Operation failed.");
       }
   },
 );
@@ -142,7 +142,7 @@ const getAllOptions = async () => {
     const { data } = await requestApi("points/cities");
     allCities.value = data;
   } catch (error) {
-    console.log(error);
+    console.error("Operation failed.");
   }
 };
 

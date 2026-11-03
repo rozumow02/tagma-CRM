@@ -1,28 +1,5 @@
-@font-face {
-  font-family: "Gotham";
-  src:
-    url("../assets/fonts/Gotham-Bold.otf") format("opentype"),
-    url("@/assets/fonts/Gotham-BoldItalic.otf") format("opentype");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Gotham";
-  src:
-    url("@/assets/fonts/Gotham-Medium.otf") format("opentype"),
-    url("@/assets/fonts/Gotham-MediumItalic.otf") format("opentype");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Gotham";
-  src:
-    url("@/assets/fonts/Gotham-Book.otf") format("opentype"),
-    url("@/assets/fonts/Gotham-BookItalic.otf") format("opentype");
-  font-weight: 400;
-  font-style: normal;
+:root {
+  --el-font-family: ui-sans-serif, system-ui, sans-serif;
 }
 
 .el-form-item {

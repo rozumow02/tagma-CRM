@@ -18,7 +18,7 @@ export function useDownloadFile() {
 
       document.body.removeChild(link);
     } catch (error) {
-      console.error(":", error);
+      console.error("Operation failed.");
       toast("Error", {
         type: "error",
       });

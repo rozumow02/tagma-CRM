@@ -76,7 +76,7 @@ watch(
         );
         allDistricts.value = data;
       } catch (error) {
-        console.log(error);
+        console.error("Operation failed.");
       }
   },
 );
@@ -91,7 +91,7 @@ watch(
         );
         allPoints.value = data;
       } catch (error) {
-        console.log(error);
+        console.error("Operation failed.");
       }
   },
 );
@@ -103,7 +103,7 @@ export const useRoutesStore = defineStore("routes", () => {
       routes.value = data.items;
       query.pageCount = data.pageCount;
     } catch (error) {
-      console.log(error);
+      console.error("Operation failed.");
     }
   };
 

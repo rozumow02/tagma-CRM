@@ -29,7 +29,7 @@ export const useManualStore = defineStore("manual", () => {
         formManual.title_tm = manuals.value?.title_tm;
       }
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
   const handleSubmit = async (
@@ -43,7 +43,7 @@ export const useManualStore = defineStore("manual", () => {
       dialogs.isAdd = dialogs.isImageUpdate = false;
       fetchData("manual/get");
     } catch (error) {
-      console.error(error);
+      console.error("Operation failed.");
     }
   };
 

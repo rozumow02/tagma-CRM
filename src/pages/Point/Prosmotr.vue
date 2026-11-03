@@ -143,7 +143,6 @@ const showComponent = (index: number) => {
 };
 
 const updateFileList = (newFileList: UploadUserFile[]) => {
-  console.log("Updated file list:", newFileList);
 };
 
 const handleImageCreate = ({ id, file }: { id: number; file: File }) => {
