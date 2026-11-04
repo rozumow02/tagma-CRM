@@ -20,7 +20,7 @@ Live demo deployment pending.
 
 The portfolio demo uses fictional synthetic data, contains no client credentials, and does not connect to the client backend. Promotion creation and route saves persist in memory until reload; this demo is separate from the production application.
 
-> **Screenshot update pending:** The existing captures below retain previous branding and must be replaced before publication.
+All six screenshots use the neutral Distribution CRM identity and synthetic portfolio-demo data.
 
 ![Total Sales report with grouped products, seven daily columns, subtotals, totals, and forecast versus plan](docs/screenshots/total-sales.png)
 
@@ -44,7 +44,7 @@ The seeded list is shown above; see [campaign details](docs/screenshots/promotio
 
 The [route screen](src/pages/routeOrders.vue) filters visits by agent and weekday. Dragging updates the list; the [store](src/store/routeOrders.ts) submits its order only when Save is clicked. Demo saves retain separate orders per agent/day in memory and reset on reload.
 
-![Six fictional outlet visits ordered for Agent 01 on Tuesday, with an explicit save control](docs/screenshots/route-ordering.png)
+![Six fictional outlet visits ordered for Agent 01 on Wednesday, with an explicit save control](docs/screenshots/route-ordering.png)
 
 ### Read-only Outlets
 
