@@ -1,4 +1,4 @@
-# Tagma CRM
+# Distribution CRM
 
 A Vue 3 frontend for managing trade outlets, sales workflows, and distribution operations.
 
@@ -6,19 +6,21 @@ A Vue 3 frontend for managing trade outlets, sales workflows, and distribution o
 
 ## Overview
 
-Tagma CRM is based on a working client application for trade and distribution operations. Four workflows represent the frontend: **Total Sales, Promotion Builder, Route Ordering, and Outlets**. Engineering examples include configurable UI, dependent selection state, report transformation, and explicit submission of reordered visits.
+Distribution CRM is a neutrally branded portfolio representation of a frontend built for a real trade and distribution client. Four workflows represent the frontend: **Total Sales, Promotion Builder, Route Ordering, and Outlets**. Engineering examples include configurable UI, dependent selection state, report transformation, and explicit submission of reordered visits.
 
 ## My Contribution
 
-I developed the complete frontend for Tagma CRM as a real client project, covering application architecture, reusable UI components, business workflows, state management, API integration, localization, and reporting interfaces.
+I developed the complete frontend for the original client application, covering application architecture, reusable UI components, business workflows, state management, API integration, localization, and reporting interfaces.
 
-Backend services were developed separately and are not included. The production repository is private; this public repository is a portfolio-safe frontend representation with client-sensitive configuration and business data excluded.
+Backend services were developed separately and are not included. The production repository is private. This public application uses a neutral identity and synthetic data, with client-identifying application branding, configuration, and business records excluded.
 
 ## Live Demo
 
 Live demo deployment pending.
 
 The portfolio demo uses fictional synthetic data, contains no client credentials, and does not connect to the client backend. Promotion creation and route saves persist in memory until reload; this demo is separate from the production application.
+
+> **Screenshot update pending:** The existing captures below retain previous branding and must be replaced before publication.
 
 ![Total Sales report with grouped products, seven daily columns, subtotals, totals, and forecast versus plan](docs/screenshots/total-sales.png)
 
@@ -110,4 +112,4 @@ VITE_APP_PREFIX_BASE_URL=/
 
 **Vite exposes `VITE_*` values to browsers; never put secrets in them.** Normal-mode tokens/roles use localStorage; token-presence guards and admin visibility are client-side restrictions, not backend authorization.
 
-Branding permission and Git-history cleanup remain separate publication tasks; demo isolation does not establish publication clearance.
+Git-history cleanup and asset redistribution review remain separate publication tasks; demo isolation does not establish publication clearance.

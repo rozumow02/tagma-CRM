@@ -4,12 +4,7 @@
       <div class="flex justify-center">
         <div class="min-w-xl">
           <div class="text-center mb-8">
-            <img
-              src="@/assets/images/tagma_logo.png"
-              alt="Tagma Logo"
-              class="mx-auto h-16 mb-2"
-            />
-            <h1 class="text-3xl font-semibold text-main mb-2">Tagma</h1>
+            <h1 class="text-3xl font-semibold text-main mb-2">Distribution CRM</h1>
           </div>
           <div class="bg-white shadow-md rounded-lg p-6 w-96 mx-auto">
             <form @submit.prevent="handleSubmit">

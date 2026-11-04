@@ -2,14 +2,9 @@
   <aside
     class="min-w-72 h-screen bg-white flex flex-col text-gray3 font-medium"
   >
-    <!-- Logo -->
+    <!-- Wordmark -->
     <div class="border-b flex justify-center items-center h-[60px]">
-      <img
-        src="@/assets/images/tagma_logo.png"
-        alt="tagma"
-        class="object-contain h-6 mr-1"
-      />
-      <h1 class="text-p1 font-sans font-medium text-main uppercase">Tagma</h1>
+      <h1 class="text-p1 font-sans font-medium text-main">Distribution CRM</h1>
     </div>
 
     <p v-if="DEMO_MODE" class="border-b px-4 py-3 text-xs leading-relaxed" role="note">
