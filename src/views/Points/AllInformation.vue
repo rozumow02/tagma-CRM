@@ -17,7 +17,11 @@
           v-permission="[isAdmin]"
           @click="beforePointDebt"
         >
-          <img class="mr-2 w-5" :src="calendarSvg" />
+          <Money
+            class="mr-2 h-5 w-5"
+            aria-hidden="true"
+            focusable="false"
+          />
           {{ t("add_debt") }}
         </ElButton>
         <ElButton
@@ -279,7 +283,7 @@
 
 <script setup lang="ts">
 import { requestApi } from "@/api";
-import calendarSvg from "@/assets/png/debt.png";
+import { Money } from "@element-plus/icons-vue";
 import InfoItem from "@/components/item/InfoItem.vue";
 import Header from "@/components/main/Header.vue";
 import Trans from "@/i18n/translation";

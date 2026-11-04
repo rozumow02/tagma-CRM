@@ -12,7 +12,7 @@ import { computed, onBeforeMount, reactive, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { ArrowLeft } from "lucide-vue-next";
 import CustomTable from "@/components/Table/CustomTable.vue";
-import calendarSvg from "@/assets/png/debt.png";
+import { Money } from "@element-plus/icons-vue";
 import {
   useAgentsStore,
   agentDebt,
@@ -111,7 +111,11 @@ const beforeAgentCreateDebt = () => {
           size="large"
           @click="beforeAgentCreateDebt"
         >
-          <img class="mr-2 w-5" :src="calendarSvg" />
+          <Money
+            class="mr-2 h-5 w-5"
+            aria-hidden="true"
+            focusable="false"
+          />
           {{ Trans.t("agents.add_debt") }}
         </ElButton>
         <Dialog v-model="isAccept" :title="Trans.t('accept_dolg')">

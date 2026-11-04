@@ -6,14 +6,24 @@
   >
     <template #content>
       <div class="flex justify-center">
-        <img
-          :src="
+        <component
+          :is="
             dialogType === 'delete'
-              ? warningSvg
+              ? WarningFilled
               : row?.status
-                ? warningSvg
-                : successSvg
+                ? WarningFilled
+                : CircleCheckFilled
           "
+          class="h-14 w-14"
+          :class="
+            dialogType === 'delete'
+              ? 'text-error'
+              : row?.status
+                ? 'text-error'
+                : 'text-success'
+          "
+          aria-hidden="true"
+          focusable="false"
         />
       </div>
     </template>
@@ -44,8 +54,7 @@
 </template>
 
 <script setup lang="ts">
-import successSvg from "@/assets/svg/success.svg";
-import warningSvg from "@/assets/svg/warning.svg";
+import { CircleCheckFilled, WarningFilled } from "@element-plus/icons-vue";
 import Dialog from "@/components/modal/Dialog.vue";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();

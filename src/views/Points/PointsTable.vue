@@ -28,8 +28,18 @@
           <Dialog :title="t('block_usage')" v-model="isBlockDialog">
             <template #content>
               <div class="flex justify-center">
-                <img :src="warningSvg" v-if="row.status" />
-                <img :src="successSvg" v-else />
+                <WarningFilled
+                  v-if="row.status"
+                  class="h-14 w-14 text-error"
+                  aria-hidden="true"
+                  focusable="false"
+                />
+                <CircleCheckFilled
+                  v-else
+                  class="h-14 w-14 text-success"
+                  aria-hidden="true"
+                  focusable="false"
+                />
               </div>
             </template>
             <template #footer>
@@ -80,6 +90,7 @@
 </template>
 
 <script setup lang="ts">
+import { CircleCheckFilled, WarningFilled } from "@element-plus/icons-vue";
 import { DEMO_MODE } from "@/demo/config";
 import { onClickOutside } from "@vueuse/core";
 const target = ref(null);
@@ -134,8 +145,6 @@ import {
 } from "@/store/Point";
 
 import TwTable from "@/components/Table/TwTable.vue";
-import successSvg from "@/assets/svg/success.svg";
-import warningSvg from "@/assets/svg/warning.svg";
 import { useI18n } from "vue-i18n";
 import MySelect from "@/components/input/my-select.vue";
 import { computed, onBeforeMount, ref, watch } from "vue";

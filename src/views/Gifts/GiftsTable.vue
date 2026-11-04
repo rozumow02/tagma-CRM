@@ -68,7 +68,13 @@
             <Dialog :title="t('block_usage')" v-model="dialogs.isBlock">
               <template #content>
                 <div class="flex justify-center">
-                  <img :src="row.status ? warningSvg : successSvg" />
+                  <component
+                    :is="row.status ? WarningFilled : CircleCheckFilled"
+                    class="h-14 w-14"
+                    :class="row.status ? 'text-error' : 'text-success'"
+                    aria-hidden="true"
+                    focusable="false"
+                  />
                 </div>
               </template>
               <template #footer>
@@ -93,14 +99,13 @@
   </TwTable>
 </template>
 <script setup lang="ts">
+import { CircleCheckFilled, WarningFilled } from "@element-plus/icons-vue";
 import { ElForm, ElFormItem, ElDropdown, ElDropdownMenu } from "element-plus";
 import { Ellipsis } from "lucide-vue-next";
 import Dialog from "@/components/modal/Dialog.vue";
 import TwTable from "@/components/Table/TwTable.vue";
 import MySelect from "@/components/input/my-select.vue";
 import InputField from "@/components/input/inputField.vue";
-import successSvg from "@/assets/svg/success.svg";
-import warningSvg from "@/assets/svg/warning.svg";
 import { useI18n } from "vue-i18n";
 import { onMounted } from "vue";
 import { useGiftsStore } from "@/store/Gifts";

@@ -106,7 +106,11 @@
               <Dialog :title="t('contact.delete')" v-model="isBlockDialog">
                 <template #content>
                   <div class="flex justify-center">
-                    <img :src="warningSvg" />
+                    <WarningFilled
+                      class="h-14 w-14 text-error"
+                      aria-hidden="true"
+                      focusable="false"
+                    />
                   </div>
                 </template>
                 <template #footer>
@@ -136,6 +140,7 @@
 </template>
 
 <script setup lang="ts">
+import { WarningFilled } from "@element-plus/icons-vue";
 import {
   ElForm,
   ElFormItem,
@@ -158,8 +163,6 @@ import {
   selectedIdContact,
 } from "@/store/Points/Contacts";
 import TwTable from "@/components/Table/TwTable.vue";
-import successSvg from "@/assets/svg/success.svg";
-import warningSvg from "@/assets/svg/warning.svg";
 import { useI18n } from "vue-i18n";
 import MySelect from "@/components/input/my-select.vue";
 import { onBeforeMount, defineProps, onMounted } from "vue";

@@ -155,7 +155,6 @@
 <script setup lang="ts">
 const { t } = Trans;
 import { Ellipsis } from "lucide-vue-next";
-import warningSvg from "@/assets/svg/warning.svg";
 import { computed, onBeforeMount, reactive, ref } from "vue";
 import type {
   FilterOption,

@@ -7,19 +7,12 @@
         class="w-6 h-6 flex items-center justify-center border rounded-md"
         :class="isChecked ? 'bg-main border-main' : 'border-gray-400'"
       >
-        <svg
+        <Check
           v-if="isChecked"
-          xmlns="http://www.w3.org/2000/svg"
           class="h-4 w-4 text-white"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
-            clip-rule="evenodd"
-          />
-        </svg>
+          aria-hidden="true"
+          focusable="false"
+        />
       </div>
     </label>
 
@@ -55,6 +48,7 @@
 </template>
 
 <script setup lang="ts">
+import { Check } from "@element-plus/icons-vue";
 import { ref, computed } from "vue";
 
 const props = defineProps<{

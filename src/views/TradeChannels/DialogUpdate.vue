@@ -2,7 +2,11 @@
   <Dialog :title="t('delete')" v-model="isBlockDialog">
     <template #content>
       <div class="flex justify-center">
-        <img :src="warningSvg" />
+        <WarningFilled
+          class="h-14 w-14 text-error"
+          aria-hidden="true"
+          focusable="false"
+        />
       </div>
     </template>
     <template #footer>
@@ -44,6 +48,7 @@
 </template>
 
 <script setup lang="ts">
+import { WarningFilled } from "@element-plus/icons-vue";
 import {
   isBlockDialog,
   useSettingChannelsStore,
@@ -53,7 +58,6 @@ import {
 } from "@/store/Channels/Setting";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
-import warningSvg from "@/assets/svg/warning.svg";
 import type { IChannels } from "@/types";
 import type { ITRADE_CHANNELS } from "@/constants";
 

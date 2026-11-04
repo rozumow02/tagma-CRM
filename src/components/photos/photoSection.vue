@@ -12,7 +12,18 @@
       />
     </div>
     <div v-else>
-      <img :src="noImage" width="300" alt="No image" />
+      <div
+        class="w-[300px] max-w-full aspect-square flex flex-col items-center justify-center gap-3 bg-gray1 text-gray3"
+        role="img"
+        aria-label="No image"
+      >
+        <Picture
+          class="h-12 w-12"
+          aria-hidden="true"
+          focusable="false"
+        />
+        <span aria-hidden="true">No image</span>
+      </div>
     </div>
   </div>
 </template>
@@ -24,7 +35,7 @@ interface PhotoProps {
   alt?: string;
 }
 
-import noImage from "@/assets/images/no_image.png";
+import { Picture } from "@element-plus/icons-vue";
 import Trans from "@/i18n/translation";
 const IMAGE_URL = import.meta.env.VITE_APP_IMAGE_URL;
 
